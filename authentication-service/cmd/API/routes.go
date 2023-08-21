@@ -6,7 +6,7 @@ import (
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/cors"
-	"goa.design/goa/middleware"
+	//Maybe it is this midlleware: "goa.design/goa/middleware"
 )
 
 func (app *Config) routes() http.Handler {
