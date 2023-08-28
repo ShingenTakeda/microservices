@@ -22,7 +22,7 @@ func New(mongo *mongo.Client) Models {
 }
 
 type Models struct {
-	Logentry LogEntry
+	LogEntry LogEntry
 }
 
 type LogEntry struct {

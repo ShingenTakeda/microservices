@@ -19,7 +19,7 @@ const (
 var client *mongo.Client
 
 type Config struct {
-
+	Models data.Models
 }
 
 func main() {
@@ -41,6 +41,16 @@ func main() {
 			panic(err)
 		}
 	}()
+
+	app := Config{
+		Models := data.New(client),
+	}
+}
+
+func (app *Config) serve() {
+	srv := &http.Server{
+		Addr: fmt.Sprintf(":%s", webPort),
+	}
 }
 
 func  connectToMongo() (*mongo.Client, error){
