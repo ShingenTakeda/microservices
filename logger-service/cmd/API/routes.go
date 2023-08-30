@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
-	cors "github.com/go-chi/cors"
+	"github.com/go-chi/cors"
 )
 
 func (app *Config) routes() http.Handler {

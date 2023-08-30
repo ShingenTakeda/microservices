@@ -26,17 +26,17 @@ type Models struct {
 }
 
 type LogEntry struct {
-	ID string `bson:"_id,omitempty" json:"id,omitempty"`
-	Name string `bson:"name" json:"name"`
-	Data string `bson:"data" json:"data"`
-	CreatedAt time.Time `bson:"created_at" json:"created_at"`
-	UpdatedAt time.Time `bson:"updated_at" json:"updated_at"`
+	ID		string `bson:"_id,omitempty" json:"id,omitempty"`
+	Name		string `bson:"name" json:"name"`
+	Data		string `bson:"data" json:"data"`
+	CreatedAt	time.Time `bson:"created_at" json:"created_at"`
+	UpdatedAt	time.Time `bson:"updated_at" json:"updated_at"`
 }
 
 func (l *LogEntry) Insert(entry LogEntry) error {
-	colletion := client.Database("logs").Collection("logs")
+	collection := client.Database("logs").Collection("logs")
 
-	_, err := colletion.InsertOne(context.TODO(), LogEntry{
+	_, err := collection.InsertOne(context.TODO(), LogEntry{
 		Name: entry.Name,
 		Data: entry.Data,
 		CreatedAt: time.Now(),
@@ -63,6 +63,7 @@ func (l *LogEntry) All() ([]*LogEntry, error) {
 	cursor, err := collection.Find(context.TODO(), bson.D{}, opts)
 	if err != nil {
 		log.Println("Finding all docs ERROR:", err)
+		return nil, err
 	}
 
 	defer cursor.Close(ctx)
@@ -133,9 +134,9 @@ func (l *LogEntry) Update() (*mongo.UpdateResult, error){
 		bson.M{"_id": docID},
 		bson.D{
 			{"$set", bson.D{
-				{"name": l.Name},
-				{"data": l.Data},
-				{"update_at": time.Now()},
+				{"name", l.Name},
+				{"data", l.Data},
+				{"updated_at", time.Now()},
 			}},
 		},
 	)
