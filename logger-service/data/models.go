@@ -106,7 +106,7 @@ func (l *LogEntry) GetOne(id string) (*LogEntry, error){
 	return &entry, nil
 }
 
-func (l* LogEntry) DropCollection() error {
+func (l *LogEntry) DropCollection() error {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 

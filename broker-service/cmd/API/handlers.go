@@ -9,9 +9,9 @@ import (
 )
 
 type RequestPayload struct{
-	Action string `json:"action"`
-	Auth AuthPayload `json:"auth,omitempty"`
-	Log LogPayload `json:"log,omitempty"`
+	Action	string		`json:"action"`
+	Auth	AuthPayload	`json:"auth,omitempty"`
+	Log	LogPayload	`json:"log,omitempty"`
 }
 
 type AuthPayload struct {
@@ -109,7 +109,7 @@ func (app *Config) authenticate(w http.ResponseWriter, a AuthPayload) {
 		app.errorJSON(w, errors.New("invalid credentials"))
 		return
 	} else if response.StatusCode != http.StatusAccepted{
-		app.errorJSON(w, errors.New("invalid credentials"))
+		app.errorJSON(w, errors.New("Error calling auth service"))
 		return
 	}
 
