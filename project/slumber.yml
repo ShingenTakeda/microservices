@@ -1,0 +1,13 @@
+# slumber.yml
+requests:
+  broker_ping: !request
+    method: GET
+    url: http://localhost:8080/ping
+
+  testing_post: !request
+    method: POST
+    url: http://localhost:8080
+  
+  auth_ping: !request
+    method: GET
+    url: http://authentication-service/ping
